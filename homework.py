@@ -70,7 +70,7 @@ class Running(Training):
                 * self.get_mean_speed()
                 + self.CALORIES_MEAN_SPEED_SHIFT)
                 * self.weight / self.M_IN_KM
-                * self.duration)
+                * self.duration * 60)
 
 
 class SportsWalking(Training):
