@@ -98,6 +98,7 @@ class SportsWalking(Training):
                           * self.weight)
                           * self.duration * self.MIN_IN_H)
 
+
 class Swimming(Training):
     """Тренировка: плавание."""
     LEN_STEP = 1.38
