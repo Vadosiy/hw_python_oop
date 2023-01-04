@@ -91,14 +91,12 @@ class SportsWalking(Training):
 
     def get_spent_calories(self) -> float:
         mean_speed_in_s = (self.get_mean_speed() * self.KMH_IN_MSEC)
-        spent_calories = ((self.CALORIES_WEIGHT_MULTIPLIER * self.weight
+        return ((self.CALORIES_WEIGHT_MULTIPLIER * self.weight
                           + (mean_speed_in_s**2
                            / (self.height / self.CM_IN_M))
                           * self.CALORIES_SPEED_HEIGHT_MULTIPLIER
                           * self.weight)
                           * self.duration * self.MIN_IN_H)
-        return spent_calories
-
 
 class Swimming(Training):
     """Тренировка: плавание."""
@@ -117,9 +115,6 @@ class Swimming(Training):
         self.length_pool = length_pool
         self.count_pool = count_pool
 
-    def get_distance(self) -> float:
-        return (self.action * self.LEN_STEP / self.M_IN_KM)
-
     def get_mean_speed(self) -> float:
         return (self.length_pool * self.count_pool
                 / self.M_IN_KM / self.duration)
@@ -131,7 +126,7 @@ class Swimming(Training):
                 * self.weight * self.duration)
 
 
-def read_package(workout_type: str, data: list) -> Training:
+def read_package(workout_type: str, data: list[int]) -> Training:
     """Прочитать данные полученные от датчиков."""
     training: dict[str, type[Training]] = {'SWM': Swimming,
                                            'RUN': Running,
